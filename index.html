@@ -1,0 +1,78 @@
+<h1>timbre.js sample</h1>
+
+<script src="http://mohayonao.github.io/timbre.js/timbre.dev.js"></script>
+<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script src="timbre.js"></script>
+<script>
+
+function showDict(){
+var synth = T("OscGen", {wave:"saw", mul:0.25}).play();
+var keydict = T("ndict.key");
+var midicps = T("midicps");
+p(synth);
+p(keydict);
+p(midicps);
+}
+
+$(function() {
+	$( "#slider" ).slider(
+		{
+      orientation: "horizontal",
+      range: "min",
+      max: 2000,
+      value: 0,
+      slide: onSliderChange,
+      change: onSliderChange 
+	    }
+	);
+
+	showDict();
+})
+
+var typeArray = ['sin', 'saw'];
+
+var sinObject = T("sin", {freq:880, mul:0.5})
+
+  function onSliderChange() {
+  	var freq = $("#slider").slider("value");
+  	$("#sliderValue").text(freq);
+
+  	sinObject.set(
+	  	{
+	  		freq:freq-0
+	  	}
+  	);
+  }
+
+
+
+function p(v){
+	console.log(v);
+}
+
+function playSound(){
+	sinObject.play();
+}
+function stopSound(){
+	sinObject.pause();
+}
+
+</script>
+
+
+<a href="#" onClick="playSound()" class="btn btn-primary">Play</a>
+<a href="#" onClick="stopSound()" class="btn btn-primary">Stop</a>
+<br>
+<br>
+<div id="slider" style="width: 400px;"></div>
+<div id="sliderValue">0</div>
+
+
+
+
+
