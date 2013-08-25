@@ -1,0 +1,26 @@
+<!-- CDN -->
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<!-- local -->
+<script src="../timbre.js"></script>
+
+<script>
+var osc = T("pulse");
+var env = T("perc", {a:50, r:2500});
+var oscenv = T("OscGen", {osc:osc, env:env, mul:0.15}).play();
+
+T("interval", {interval:500}, function(count) {
+  var noteNum  = 69 + [0, 2, 4, 5, 7, 9, 11, 12][count % 8];
+  var velocity = 64 + (count % 64);
+  oscenv.noteOn(noteNum, velocity);
+}).start();
+</script>
+
+<div class="container">
+  <h1>
+    piano
+  </h1>
+</div>

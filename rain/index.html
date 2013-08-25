@@ -1,0 +1,24 @@
+<!-- CDN -->
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<!-- local -->
+<script src="../timbre.js"></script>
+
+<script>
+//rain sound
+var saw = T("pink", {mul:0.15}).play();
+var fft = T("spectrum", {size:512, interval:100}).on("data", function() {
+  fft.plot({target:canvas});
+}).listen(saw);
+</script>
+
+<div class="container">
+  <h1>
+    rain
+  </h1>
+
+  TODO: something visible
+</div>

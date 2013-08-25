@@ -1,0 +1,36 @@
+<!-- CDN -->
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<!-- local -->
+<script src="../timbre.js"></script>
+
+<script>
+//audio
+//var src = '../sound/man_never_went_to_the_moon.wav';
+var src = 'man_never_went_to_the_moon.wav';
+
+var soundObject = T("audio").loadthis(src).play();
+
+//fft
+//var fft = T("fft").listen(soundObject);
+var fft = T("spectrum").listen(soundObject);
+
+//draw update
+T("interval", {interval:100}, function() {
+  fft.plot({target:canvas});
+  //console.log(fft.real);
+}).start();
+</script>
+
+<div class="container">
+  <h1>
+    FFT
+  </h1>
+
+  <h3>canvas</h3>
+  <canvas id="canvas" style="width:240px;height:80px"></canvas>
+
+</div>
